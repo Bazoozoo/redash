@@ -836,8 +836,8 @@ all_models = (DataSource, User, QueryResult, Query, Alert, Dashboard, Visualizat
 
 
 def init_db():
-    Group.insert(name='admin', permissions=['admin'], tables=['*']).execute()
-    Group.insert(name='default', permissions=Group.DEFAULT_PERMISSIONS, tables=['*']).execute()
+    Group.get_or_create(name='admin', defaults={'permissions': ['admin'], 'tables': ['*']})
+    Group.get_or_create(name='default', defaults={'permissions': Group.DEFAULT_PERMISSIONS, 'tables': ['*']})
 
 
 def create_db(create_tables, drop_tables):
